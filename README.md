@@ -14,3 +14,8 @@ The app uses:
 
 ## Test
 The app is tested only in debug mode with an android emulator
+
+##TODO
+Add splash screen
+
+Increase performance collectionview
