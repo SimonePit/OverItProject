@@ -5,6 +5,7 @@ using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
 using Acr.UserDialogs;
+using AndroidX.AppCompat.App;
 
 namespace OverItProject.Droid
 {
@@ -14,7 +15,7 @@ namespace OverItProject.Droid
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
+            AppCompatDelegate.DefaultNightMode = AppCompatDelegate.ModeNightNo;
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             UserDialogs.Init(this);

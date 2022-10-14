@@ -38,8 +38,7 @@ namespace OverItProject.Viewmodels
 
         private void ImageClicked(Photo obj)
         {
-            var navPage = new NavigationPage(new DetailPage(obj));
-            Application.Current.MainPage.Navigation.PushAsync(navPage);
+            Application.Current.MainPage.Navigation.PushAsync(new DetailPage(obj));
         }
         internal async void SearchPhotos(string newTextValue)
         {

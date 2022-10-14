@@ -4,7 +4,8 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:converter="clr-namespace:OverItProject.Helpers"
-    xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms">
+    xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+    Title="Home view">
     <ContentPage.Resources>
         <converter:BoolConverter x:Key="boolconverter" />
     </ContentPage.Resources>
