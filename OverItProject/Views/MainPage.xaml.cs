@@ -20,12 +20,12 @@ namespace OverItProject
 
         private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
-            mainPageViewmodel.SearchPhotos(e.NewTextValue);
+            if (e.NewTextValue.Length < 2)
+            {
+                mainPageViewmodel.IsListVisible = false;
+                mainPageViewmodel.ListPhotos = null;
+            }
         }
 
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
-        {
-
-        }
     }
 }

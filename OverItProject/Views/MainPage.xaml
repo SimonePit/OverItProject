@@ -2,11 +2,21 @@
 <ContentPage
     x:Class="OverItProject.MainPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converter="clr-namespace:OverItProject.Helpers"
+    xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms">
+    <ContentPage.Resources>
+        <converter:BoolConverter x:Key="boolconverter" />
+    </ContentPage.Resources>
 
     <StackLayout x:Name="mainPageView">
-        <SearchBar Placeholder="Cerca una foto" TextChanged="SearchBar_TextChanged" />
-        <CollectionView ItemsSource="{Binding ListPhotos}">
+        <SearchBar
+            x:Name="searchBar"
+            Placeholder="Cerca una foto"
+            SearchCommand="{Binding SearchCommand}"
+            SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"
+            TextChanged="SearchBar_TextChanged" />
+        <CollectionView IsVisible="{Binding IsListVisible}" ItemsSource="{Binding ListPhotos}">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout
                     HorizontalItemSpacing="0"
@@ -19,12 +29,29 @@
                     <Image Source="{Binding ImageUrl}">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding Path=BindingContext.ImageTapped, Source={x:Reference mainPageView}}" CommandParameter="{Binding .}" />
-
                         </Image.GestureRecognizers>
                     </Image>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+        <StackLayout HorizontalOptions="FillAndExpand" IsVisible="{Binding IsListVisible, Converter={StaticResource boolconverter}}">
+            <forms:AnimationView
+                x:Name="animationView"
+                Animation="Lochness_Monster.json"
+                AnimationSource="AssetOrBundle"
+                HeightRequest="450"
+                HorizontalOptions="FillAndExpand"
+                RepeatCount="3"
+                RepeatMode="Restart"
+                VerticalOptions="CenterAndExpand" />
+            <Label
+                FontAttributes="Italic"
+                FontSize="20"
+                HorizontalOptions="CenterAndExpand"
+                Text="Ancora nessun elemento cercato!"
+                TextColor="Black" />
+        </StackLayout>
+
     </StackLayout>
 
 </ContentPage>
